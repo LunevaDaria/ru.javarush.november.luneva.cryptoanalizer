@@ -8,6 +8,5 @@ public class EncryptionConsoleApplication {
         System.out.println(HELLO);
 
         new Menu().openMenu();
-
     }
 }

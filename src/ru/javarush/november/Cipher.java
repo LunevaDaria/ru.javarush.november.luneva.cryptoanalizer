@@ -16,7 +16,7 @@ public class Cipher {
     public char decryptedSymbol;
 
 
-    public static HashMap<Integer, Character> downloadAlphabet () {
+    public static HashMap<Integer, Character> downloadAlphabet() {
 
         Scanner scanner = new Scanner(System.in);
         alphabet = new HashMap<Integer, Character>();
@@ -31,7 +31,7 @@ public class Cipher {
             }
             System.out.println("Алфавит загружен.");
             alphabetSize = alphabet.size();
-        }catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             System.out.println("Файл не найден. Проверьте адрес файла.");
             downloadAlphabet();
         } catch (Exception e) {
@@ -47,7 +47,7 @@ public class Cipher {
         fileName = scanner.nextLine();
 
         try (FileReader reader = new FileReader(fileName);
-                BufferedReader bufferedReader = new BufferedReader(reader)) {
+             BufferedReader bufferedReader = new BufferedReader(reader)) {
 
             try (FileWriter encryptedFile = new FileWriter("encryptedFile.txt");
                  BufferedWriter bufferedWriter = new BufferedWriter(encryptedFile)) {
@@ -55,7 +55,7 @@ public class Cipher {
                 while (bufferedReader.ready()) {
                     symbol = (char) bufferedReader.read();
                     getNumberOfSymbol();
-                    if (currentNumberOfSymbol==0) {
+                    if (currentNumberOfSymbol == 0) {
                         bufferedWriter.write(symbol);
                     } else {
                         encryptSymbol();

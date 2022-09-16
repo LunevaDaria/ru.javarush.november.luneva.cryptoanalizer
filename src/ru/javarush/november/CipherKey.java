@@ -14,12 +14,13 @@ public class CipherKey {
         try {
             System.out.println("Введите ключ для шифра. Ключ - это число.");
             int userKey = scanner.nextInt();
-            if (userKey <= Cipher.alphabetSize) {
+            if (userKey > 0 && userKey <= Cipher.alphabetSize) {
                 cipherKey = userKey;
             } else if (userKey > Cipher.alphabetSize) {
                 cipherKey = userKey % Cipher.alphabetSize;
             } else {
                 System.out.println("Ключ не может быть отрицательным числом.");
+                setCipherKey();
             }
         } catch (InputMismatchException e) {
             System.out.println("Ключ не может содержать буквы.");
