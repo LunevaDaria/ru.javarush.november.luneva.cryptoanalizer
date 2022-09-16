@@ -4,17 +4,15 @@ import java.util.Scanner;
 
 public class Menu {
 
-    private final String WELCOME = "Что Вы хотите сделать?";
-    private final String ENCRYPTION = "1. ШИФРОВАНИЕ";
-    private final String DECRYPTION = "2. ДЕШИФРОВКА";
-    private final String BRUTEFORCE = "3. BRUTE FORCE";
-    private final String EXIT = "4. ВЫХОД";
-    private final String CHOOSE_MODE = "Введите номер режима от 1 до 4";
-    private final String SELECTED_MODE = "Вы выбрали режим ";
+    private final static String WELCOME = "Что Вы хотите сделать?";
+    private final static String ENCRYPTION = "1. ШИФРОВАНИЕ";
+    private final static String DECRYPTION = "2. ДЕШИФРОВКА";
+    private final static String BRUTEFORCE = "3. BRUTE FORCE";
+    private final static String EXIT = "4. ВЫХОД";
+    private final static String CHOOSE_MODE = "Введите номер режима от 1 до 4";
+    private final static String SELECTED_MODE = "Вы выбрали режим ";
 
     public void openMenu() {
-
-        Menu menu = new Menu();
 
         System.out.println(WELCOME);
         System.out.println(ENCRYPTION);

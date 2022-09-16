@@ -8,7 +8,7 @@ import java.util.Map;
 public class BruteForce {
 
     private char popularChar;
-    private final char space = ' ';
+    private static final char space = ' ';
     private int numberOfSpace;
     private int numberOfPopularChar;
     private HashMap<Character, Long> ciphertextStatistics;

@@ -64,7 +64,6 @@ public class Cipher {
                 }
             }
             System.out.println("Файл записан.");
-            new Menu().openMenu();
         } catch (FileNotFoundException e) {
             System.out.println("Введите адрес файла с текстом для шифрования.");
         } catch (Exception e) {
@@ -99,7 +98,6 @@ public class Cipher {
                 }
             }
             System.out.println("Файл записан.");
-            new Menu().openMenu();
         } catch (FileNotFoundException e) {
             System.out.println("Вы неверно ввели адрес файла с текстом для расшифровки");
         } catch (Exception e) {
@@ -118,27 +116,27 @@ public class Cipher {
     }
 
     public char dencryptSymbol() {
-            numberOfDecryptedSymbol = currentNumberOfSymbol - CipherKey.cipherKey;
-            if (numberOfDecryptedSymbol < 0) {
-                numberOfDecryptedSymbol = alphabetSize - (CipherKey.cipherKey - currentNumberOfSymbol);
-            }
-            for (Integer key : alphabet.keySet()) {
-                if (numberOfDecryptedSymbol.equals(key)) {
-                    decryptedSymbol = alphabet.get(numberOfDecryptedSymbol);
+        numberOfDecryptedSymbol = currentNumberOfSymbol - CipherKey.cipherKey;
+        if (numberOfDecryptedSymbol < 0) {
+            numberOfDecryptedSymbol = alphabetSize - (CipherKey.cipherKey - currentNumberOfSymbol);
+        }
+        for (Integer key : alphabet.keySet()) {
+            if (numberOfDecryptedSymbol.equals(key)) {
+                decryptedSymbol = alphabet.get(numberOfDecryptedSymbol);
             }
         }
         return decryptedSymbol;
     }
 
     public char encryptSymbol() {
-            numberOfEncryptedSymbol = currentNumberOfSymbol + CipherKey.cipherKey;
-            if (numberOfEncryptedSymbol > Cipher.alphabetSize) {
-                numberOfEncryptedSymbol = (currentNumberOfSymbol + CipherKey.cipherKey) % alphabetSize;
+        numberOfEncryptedSymbol = currentNumberOfSymbol + CipherKey.cipherKey;
+        if (numberOfEncryptedSymbol > Cipher.alphabetSize) {
+            numberOfEncryptedSymbol = (currentNumberOfSymbol + CipherKey.cipherKey) % alphabetSize;
+        }
+        for (Integer key : alphabet.keySet()) {
+            if (numberOfEncryptedSymbol.equals(key)) {
+                encryptedSymbol = alphabet.get(numberOfEncryptedSymbol);
             }
-            for (Integer key : alphabet.keySet()) {
-                if (numberOfEncryptedSymbol.equals(key)) {
-                    encryptedSymbol = alphabet.get(numberOfEncryptedSymbol);
-                }
         }
         return encryptedSymbol;
     }
