@@ -6,7 +6,8 @@ public class EncryptionConsoleApplication {
 
     public static void main(String[] args) {
 
-        System.out.println(HELLO);
-        new Menu().openMenu();
+        Menu menu = new Menu();
+        menu.print(HELLO);
+        menu.run();
     }
 }

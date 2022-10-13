@@ -10,17 +10,18 @@ public class Cipher {
     public static int alphabetSize;
     public static char symbol;
     public int currentNumberOfSymbol;
-    private Integer numberOfEncryptedSymbol;
-    public Integer numberOfDecryptedSymbol;
-    private char encryptedSymbol;
-    public char decryptedSymbol;
+
+//    private Integer numberOfEncryptedSymbol;
+//    private Integer numberOfDecryptedSymbol;
+//    private char decryptedSymbol;
+//    private char encryptedSymbol;
 
 
     public static HashMap<Integer, Character> downloadAlphabet() {
 
         Scanner scanner = new Scanner(System.in);
         alphabet = new HashMap<Integer, Character>();
-        System.out.println("Введите адрес файла с алфавитом:");
+        print("Введите адрес файла с алфавитом:");
 
         try (FileReader file = new FileReader(scanner.nextLine())) {
             Integer key = 1;
@@ -29,10 +30,10 @@ public class Cipher {
                 alphabet.put(key, symbol);
                 key++;
             }
-            System.out.println("Алфавит загружен.");
+            print("Алфавит загружен.");
             alphabetSize = alphabet.size();
         } catch (FileNotFoundException e) {
-            System.out.println("Файл не найден. Проверьте адрес файла.");
+            print("Файл не найден. Проверьте адрес файла.");
             downloadAlphabet();
         } catch (Exception e) {
             e.printStackTrace();
@@ -43,7 +44,7 @@ public class Cipher {
     public void encrypt() {
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите адрес файла с текстом для шифрования.");
+        print("Введите адрес файла с текстом для шифрования.");
         fileName = scanner.nextLine();
 
         try (FileReader reader = new FileReader(fileName);
@@ -58,14 +59,13 @@ public class Cipher {
                     if (currentNumberOfSymbol == 0) {
                         bufferedWriter.write(symbol);
                     } else {
-                        encryptSymbol();
-                        bufferedWriter.write(encryptedSymbol);
+                        bufferedWriter.write(encryptSymbol());
                     }
                 }
             }
-            System.out.println("Файл записан.");
+            print("Файл записан.");
         } catch (FileNotFoundException e) {
-            System.out.println("Введите адрес файла с текстом для шифрования.");
+            print("Введите адрес файла с текстом для шифрования.");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -73,7 +73,7 @@ public class Cipher {
 
     public static String chooseFile() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите адрес файла с текстом для расшифровки");
+        print("Введите адрес файла с текстом для расшифровки");
         fileName = scanner.nextLine();
         return fileName;
     }
@@ -92,14 +92,13 @@ public class Cipher {
                     if (currentNumberOfSymbol == 0) {
                         bufferedWriter.write(symbol);
                     } else {
-                        dencryptSymbol();
-                        bufferedWriter.write(decryptedSymbol);
+                        bufferedWriter.write(dencryptSymbol());
                     }
                 }
             }
-            System.out.println("Файл записан.");
+            print("Файл записан.");
         } catch (FileNotFoundException e) {
-            System.out.println("Вы неверно ввели адрес файла с текстом для расшифровки");
+            print("Вы неверно ввели адрес файла с текстом для расшифровки");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -116,7 +115,8 @@ public class Cipher {
     }
 
     public char dencryptSymbol() {
-        numberOfDecryptedSymbol = currentNumberOfSymbol - CipherKey.cipherKey;
+        char decryptedSymbol = '\u0000';
+        Integer numberOfDecryptedSymbol = currentNumberOfSymbol - CipherKey.cipherKey;
         if (numberOfDecryptedSymbol < 0) {
             numberOfDecryptedSymbol = alphabetSize - (CipherKey.cipherKey - currentNumberOfSymbol);
         }
@@ -129,7 +129,8 @@ public class Cipher {
     }
 
     public char encryptSymbol() {
-        numberOfEncryptedSymbol = currentNumberOfSymbol + CipherKey.cipherKey;
+        char encryptedSymbol = '\u0000';
+        Integer numberOfEncryptedSymbol = currentNumberOfSymbol + CipherKey.cipherKey;
         if (numberOfEncryptedSymbol > Cipher.alphabetSize) {
             numberOfEncryptedSymbol = (currentNumberOfSymbol + CipherKey.cipherKey) % alphabetSize;
         }
@@ -139,5 +140,9 @@ public class Cipher {
             }
         }
         return encryptedSymbol;
+    }
+
+    private static void print(String message) {
+        System.out.println(message);
     }
 }
